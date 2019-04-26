@@ -7,33 +7,12 @@
       <h2 class="subtitle">
         Operators.... again
       </h2>
-      <ul>
-        <li v-for="(post, index) in posts" :key="index">
-          <NuxtLink :to="{ name: 'posts-id', params: { id: post.id } }">
-            {{ post.title }}
-          </NuxtLink>
-        </li>
-      </ul>
+
     </div>
   </section>
 </template>
 
-<script>
-import axios from 'axios'
 
-export default {
-  asyncData({ req, params }) {
-    // We can return a Promise instead of calling the callback
-    return axios.get('https://jsonplaceholder.typicode.com/posts')
-      .then((res) => {
-        return { posts: res.data.slice(0, 5) }
-      })
-  },
-  head: {
-    title: 'List of posts'
-  }
-}
-</script>
 
 <style>
 .container {
