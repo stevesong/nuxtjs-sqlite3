@@ -1,35 +1,36 @@
 <template>
   <section class="container">
     <div>
-      <logo />
       <h1 class="title">
-        speccy
+        Operators
       </h1>
       <h2 class="subtitle">
-        My superb Nuxt.js project
+        Operators.... again
       </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >GitHub</a>
-      </div>
+      <ul>
+        <li v-for="(post, index) in posts" :key="index">
+          <NuxtLink :to="{ name: 'posts-id', params: { id: post.id } }">
+            {{ post.title }}
+          </NuxtLink>
+        </li>
+      </ul>
     </div>
   </section>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import axios from 'axios'
 
 export default {
-  components: {
-    Logo
+  asyncData({ req, params }) {
+    // We can return a Promise instead of calling the callback
+    return axios.get('https://jsonplaceholder.typicode.com/posts')
+      .then((res) => {
+        return { posts: res.data.slice(0, 5) }
+      })
+  },
+  head: {
+    title: 'List of posts'
   }
 }
 </script>

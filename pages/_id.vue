@@ -2,7 +2,7 @@
   <div style="padding: 150px;">
     <h1>Data</h1>
     <p><strong>ID:</strong> {{row.id}}</p>
-    <p><strong>Info:</strong> {{row.info}}</p>
+    <p><strong>Info:</strong> {{row.Operator}}</p>
     <input v-model="id" style="margin-top: 50px;">
     <button @click="getData">Get data for ID {{id}}</button>
   </div>
